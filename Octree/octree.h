@@ -14,7 +14,11 @@ public:
 
 	Ponto Centro;
 	double tamanho;
-	No raiz;
+
+	int profundidadeMaxima;
+	No *raiz;
+
+	Octree
 };
 
 #endif 
