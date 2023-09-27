@@ -29,6 +29,7 @@ public:
 	void deleteNode(Node* node);
 	void destroy();
 
+	void addNodes(Node* parent);
 };
 
 #endif 

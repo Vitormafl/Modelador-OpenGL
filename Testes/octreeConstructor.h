@@ -35,6 +35,17 @@ void testeOctreeCreation() {
 	cout << "Octree raiz filho 5:" << (octree.rootNode->childNodes[5] == nullptr) << endl;
 	cout << "Octree raiz filho 6:" << (octree.rootNode->childNodes[6] == nullptr) << endl;
 	cout << "Octree raiz filho 7:" << (octree.rootNode->childNodes[7] == nullptr) << endl;
+
+	octree.addNodes(octree.rootNode);
+
+	cout << "Octree raiz filho 0:" << octree.rootNode->childNodes[0]->nodeCenter.x << " " << octree.rootNode->childNodes[0]->nodeCenter.y << " " << octree.rootNode->childNodes[0]->nodeCenter.z << " " << endl;
+	cout << "Octree raiz filho 1:" << octree.rootNode->childNodes[1]->nodeCenter.x << " " << octree.rootNode->childNodes[1]->nodeCenter.y << " " << octree.rootNode->childNodes[1]->nodeCenter.z << " " << endl;
+	cout << "Octree raiz filho 2:" << octree.rootNode->childNodes[2]->nodeCenter.x << " " << octree.rootNode->childNodes[2]->nodeCenter.y << " " << octree.rootNode->childNodes[2]->nodeCenter.z << " " << endl;
+	cout << "Octree raiz filho 3:" << octree.rootNode->childNodes[3]->nodeCenter.x << " " << octree.rootNode->childNodes[3]->nodeCenter.y << " " << octree.rootNode->childNodes[3]->nodeCenter.z << " " << endl;
+	cout << "Octree raiz filho 4:" << octree.rootNode->childNodes[4]->nodeCenter.x << " " << octree.rootNode->childNodes[4]->nodeCenter.y << " " << octree.rootNode->childNodes[4]->nodeCenter.z << " " << endl;
+	cout << "Octree raiz filho 5:" << octree.rootNode->childNodes[5]->nodeCenter.x << " " << octree.rootNode->childNodes[5]->nodeCenter.y << " " << octree.rootNode->childNodes[5]->nodeCenter.z << " " << endl;
+	cout << "Octree raiz filho 6:" << octree.rootNode->childNodes[6]->nodeCenter.x << " " << octree.rootNode->childNodes[6]->nodeCenter.y << " " << octree.rootNode->childNodes[6]->nodeCenter.z << " " << endl;
+	cout << "Octree raiz filho 7:" << octree.rootNode->childNodes[7]->nodeCenter.x << " " << octree.rootNode->childNodes[7]->nodeCenter.y << " " << octree.rootNode->childNodes[7]->nodeCenter.z << " " << endl;
 };
 
 #endif 
