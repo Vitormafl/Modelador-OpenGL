@@ -10,15 +10,17 @@
 #include"Objects/VBO.h"
 #include"Objects/EBO.h"
 
+#include "Testes/octreeConstructor.h"
+
 GLfloat vertices[] =
 {
-	-0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 0.0f,   // Front Lower left corner
-	 0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 0.0f,   // Front Lower right corner
-	 0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,   // Front Upper right corner
+	-0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f,   // Front Lower left corner
+	 0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f,   // Front Lower right corner
+	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f,   // Front Upper right corner
 	-0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f,   // Front Upper left corner
-	-0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,   // Back Lower left corner
-	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,   // Back Lower right corner
-	 0.5f,  0.5f, -0.5f,  0.0f, 0.0f, 1.0f,   // Back Upper right corner
+	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f,   // Back Lower left corner
+	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f,   // Back Lower right corner
+	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,   // Back Upper right corner
 	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,   // Back Upper left corner
 };
 
@@ -93,6 +95,8 @@ int main()
 
 	glEnable(GL_DEPTH_TEST);
 
+	testeOctreeCreation();
+
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
 	{
@@ -103,7 +107,7 @@ int main()
 		// Tell OpenGL which Shader Program we want to use
 		shaderProgram.Activate();
 		//Mandando a uniform para o shader
-		glUniform1f(uniID, 4.5f);
+		glUniform1f(uniID, 2.5f);
 
 		double crntTime = glfwGetTime();
 		if (crntTime - prevTime >= (1.0f / 60.0f))
@@ -117,7 +121,7 @@ int main()
 		glm::mat4 proj(1.0f);
 
 		model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
-		view = glm::translate(view, glm::vec3(-0.0f, -0.0f, -50.0f));
+		view = glm::translate(view, glm::vec3(-0.0f, -0.0f, -10.0f));
 		proj = glm::perspective(glm::radians(45.0f), (float)(800 / 800), 0.1f, 100.0f);
 
 		int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");

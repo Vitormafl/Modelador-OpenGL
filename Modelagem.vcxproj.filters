@@ -42,7 +42,7 @@
     <ClCompile Include="Camera\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Octree\no.cpp">
+    <ClCompile Include="Octree\octree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,10 +68,10 @@
     <ClInclude Include="Camera\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Octree\no.h">
+    <ClInclude Include="Octree\octree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Octree\octree.h">
+    <ClInclude Include="Testes\octreeConstructor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

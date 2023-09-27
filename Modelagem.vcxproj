@@ -143,7 +143,7 @@
     <ClCompile Include="Objects\EBO.cpp" />
     <ClCompile Include="Objects\VAO.cpp" />
     <ClCompile Include="Objects\VBO.cpp" />
-    <ClCompile Include="Octree\no.cpp" />
+    <ClCompile Include="Octree\octree.cpp" />
     <ClCompile Include="Shaders\shaderClass.cpp" />
     <ClCompile Include="Texture\stb.cpp" />
     <ClCompile Include="Texture\Texture.cpp" />
@@ -156,9 +156,9 @@
     <ClInclude Include="Objects\EBO.h" />
     <ClInclude Include="Objects\VAO.h" />
     <ClInclude Include="Objects\VBO.h" />
-    <ClInclude Include="Octree\no.h" />
     <ClInclude Include="Octree\octree.h" />
     <ClInclude Include="Shaders\shaderClass.h" />
+    <ClInclude Include="Testes\octreeConstructor.h" />
     <ClInclude Include="Texture\Texture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
