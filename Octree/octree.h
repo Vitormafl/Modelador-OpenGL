@@ -13,14 +13,15 @@ struct Node {
 	bool isLeaf;				//Indicar se o nó é ou não uma Folha da Octree
 	Node* parentNode;			//Ponteiro para o nó Pai
 	Node* childNodes[8];		//Ponteiro para os 8 nós filhos 
+	int objectIntersect;		// -1/0/1/2 nó fora do objeto/ nó parcialmente dentro do objeto/ nó totalmente dentro do objeto
 };
 
 class Octree {
 public:
 	//Atributos básicos da Octree
 
-	glm::vec3 center;			//Posição do centro da Octree 
-	float halfSize;				//Tamanho da Octree, 2 * halfSize = lado do cubo	
+	glm::vec3 center;			//Posição do centro da Octree
+	float halfSize;				//Tamanho da Octree, 2 * halfSize = lado do cubo
 	int maxDepth;				//Profundidade Máxima que um nó da Octree pode atingir
 	Node* rootNode;				//Ponteiro para o Nó raiz da Octree
 
@@ -30,6 +31,7 @@ public:
 	void destroy();
 
 	void addNodes(Node* parent);
+	void setSphere(glm::vec3 sphereCenter, float sphereRadius);
 };
 
 #endif 

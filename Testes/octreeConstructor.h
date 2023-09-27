@@ -38,6 +38,9 @@ void testeOctreeCreation() {
 
 	octree.addNodes(octree.rootNode);
 
+	cout << "Octree raiz eh folha:" << octree.rootNode->isLeaf << endl;
+	cout << "Octree raiz profundidade:" << octree.rootNode->nodeDepth << endl;
+
 	cout << "Octree raiz filho 0:" << octree.rootNode->childNodes[0]->nodeCenter.x << " " << octree.rootNode->childNodes[0]->nodeCenter.y << " " << octree.rootNode->childNodes[0]->nodeCenter.z << " " << endl;
 	cout << "Octree raiz filho 1:" << octree.rootNode->childNodes[1]->nodeCenter.x << " " << octree.rootNode->childNodes[1]->nodeCenter.y << " " << octree.rootNode->childNodes[1]->nodeCenter.z << " " << endl;
 	cout << "Octree raiz filho 2:" << octree.rootNode->childNodes[2]->nodeCenter.x << " " << octree.rootNode->childNodes[2]->nodeCenter.y << " " << octree.rootNode->childNodes[2]->nodeCenter.z << " " << endl;
