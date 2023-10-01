@@ -144,6 +144,7 @@
     <ClCompile Include="Objects\VAO.cpp" />
     <ClCompile Include="Objects\VBO.cpp" />
     <ClCompile Include="Octree\octree.cpp" />
+    <ClCompile Include="Primitives\Sphere.cpp" />
     <ClCompile Include="Shaders\shaderClass.cpp" />
     <ClCompile Include="Texture\stb.cpp" />
     <ClCompile Include="Texture\Texture.cpp" />
@@ -157,9 +158,12 @@
     <ClInclude Include="Objects\VAO.h" />
     <ClInclude Include="Objects\VBO.h" />
     <ClInclude Include="Octree\octree.h" />
+    <ClInclude Include="Primitives\Sphere.h" />
     <ClInclude Include="Shaders\shaderClass.h" />
     <ClInclude Include="Testes\octreeConstructor.h" />
+    <ClInclude Include="Testes\octreePaintingTest.h" />
     <ClInclude Include="Texture\Texture.h" />
+    <ClInclude Include="Visualization\Visualization.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

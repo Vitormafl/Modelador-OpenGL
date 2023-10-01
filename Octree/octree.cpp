@@ -5,6 +5,7 @@ Octree::Octree(glm::vec3 rootCenter, float halfSize, int maxDepth)
 	this->center = rootCenter;
 	this->halfSize = halfSize;
 	this->maxDepth = maxDepth;
+	this->octreeData = renderData();
 
 	rootNode = new Node;
 
@@ -150,6 +151,186 @@ void Octree::addNodes(Node* parent) {
 	}
 }
 
-void Octree::setSphere(glm::vec3 sphereCenter, float sphereRadius) {
+void Octree::nodeRenderData(Node* node) {
 
+	if (node->objectIntersect == 0) {
+		return;
+	}
+
+	if (node->objectIntersect == 2) {
+		
+		float centerDislocation = this->halfSize / (float)pow(2, node->nodeDepth);
+
+										/* VERTICES */
+		this->octreeData.vertices.push_back(node->nodeCenter.x - centerDislocation);	//
+		this->octreeData.vertices.push_back(node->nodeCenter.y - centerDislocation);	// VERTEX 0
+		this->octreeData.vertices.push_back(node->nodeCenter.z - centerDislocation);	//
+		this->octreeData.vertices.push_back(1.0f);
+		this->octreeData.vertices.push_back(1.0f);
+		this->octreeData.vertices.push_back(1.0f);
+
+		this->octreeData.vertices.push_back(node->nodeCenter.x - centerDislocation);	//
+		this->octreeData.vertices.push_back(node->nodeCenter.y + centerDislocation);	// VERTEX 1
+		this->octreeData.vertices.push_back(node->nodeCenter.z - centerDislocation);	//
+		this->octreeData.vertices.push_back(1.0f);
+		this->octreeData.vertices.push_back(1.0f);
+		this->octreeData.vertices.push_back(1.0f);
+
+		this->octreeData.vertices.push_back(node->nodeCenter.x - centerDislocation);	//
+		this->octreeData.vertices.push_back(node->nodeCenter.y - centerDislocation);	// VERTEX 2
+		this->octreeData.vertices.push_back(node->nodeCenter.z + centerDislocation);	//
+		this->octreeData.vertices.push_back(1.0f);
+		this->octreeData.vertices.push_back(1.0f);
+		this->octreeData.vertices.push_back(1.0f);
+
+		this->octreeData.vertices.push_back(node->nodeCenter.x - centerDislocation);	//
+		this->octreeData.vertices.push_back(node->nodeCenter.y + centerDislocation);	// VERTEX 3
+		this->octreeData.vertices.push_back(node->nodeCenter.z + centerDislocation);	//
+		this->octreeData.vertices.push_back(1.0f);
+		this->octreeData.vertices.push_back(1.0f);
+		this->octreeData.vertices.push_back(1.0f);
+
+		this->octreeData.vertices.push_back(node->nodeCenter.x + centerDislocation);	//
+		this->octreeData.vertices.push_back(node->nodeCenter.y - centerDislocation);	// VERTEX 4
+		this->octreeData.vertices.push_back(node->nodeCenter.z - centerDislocation);	//
+		this->octreeData.vertices.push_back(1.0f);
+		this->octreeData.vertices.push_back(1.0f);
+		this->octreeData.vertices.push_back(1.0f);
+
+		this->octreeData.vertices.push_back(node->nodeCenter.x + centerDislocation);	//
+		this->octreeData.vertices.push_back(node->nodeCenter.y + centerDislocation);	// VERTEX 5
+		this->octreeData.vertices.push_back(node->nodeCenter.z - centerDislocation);	//
+		this->octreeData.vertices.push_back(1.0f);
+		this->octreeData.vertices.push_back(1.0f);
+		this->octreeData.vertices.push_back(1.0f);
+
+		this->octreeData.vertices.push_back(node->nodeCenter.x + centerDislocation);	//
+		this->octreeData.vertices.push_back(node->nodeCenter.y - centerDislocation);	// VERTEX 6
+		this->octreeData.vertices.push_back(node->nodeCenter.z + centerDislocation);	//
+		this->octreeData.vertices.push_back(1.0f);
+		this->octreeData.vertices.push_back(1.0f);
+		this->octreeData.vertices.push_back(1.0f);
+
+		this->octreeData.vertices.push_back(node->nodeCenter.x + centerDislocation);	//
+		this->octreeData.vertices.push_back(node->nodeCenter.y + centerDislocation);	// VERTEX 7
+		this->octreeData.vertices.push_back(node->nodeCenter.z + centerDislocation);	//
+		this->octreeData.vertices.push_back(1.0f);
+		this->octreeData.vertices.push_back(1.0f);
+		this->octreeData.vertices.push_back(1.0f);
+
+											/* LINHAS */
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 0);
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 1);
+
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 1);
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 3);
+
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 3);
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 2);
+
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 2);
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 0);
+
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 0);
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 4);
+
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 4);
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 6);
+
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 6);
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 2);
+
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 1);
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 5);
+
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 5);
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 7);
+
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 7);
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 3);
+
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 5);
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 4);
+
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 7);
+		this->octreeData.lineIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 6);
+
+										/* TRIANGULOS */
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 0);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 2);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 1);
+
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 1);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 2);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 3);
+
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 2);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 6);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 7);
+
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 2);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 7);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 3);
+
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 7);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 4);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 5);
+
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 7);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 6);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 4);
+
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 0);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 1);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 5);
+
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 0);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 5);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 4);
+
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 7);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 1);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 3);
+
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 7);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 5);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 1);
+
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 0);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 6);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 2);
+
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 0);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 4);
+		this->octreeData.triangleIndices.push_back((this->octreeData.vertices.size() / 6) - 8 + 6);
+		
+		return;
+	}
+
+	if (node->objectIntersect == 1) {
+		for (int i = 0; i < 8; i++) {
+			nodeRenderData(node->childNodes[i]);
+		}
+
+		return;
+	}
+};
+
+
+void Octree::setRenderData() {
+	if (this->rootNode->objectIntersect == -1) {
+		std::cout << "Octree intersections not setted!" << std::endl;
+		return;
+	}
+
+	if (this->octreeData.vertices.size() > 0) {
+		std::vector<GLfloat> emptyGLfloatVector;
+		std::vector<GLuint> emptyGLuintVector;
+
+		this->octreeData.lineIndices = emptyGLuintVector;
+		this->octreeData.triangleIndices = emptyGLuintVector;
+		this->octreeData.vertices = emptyGLfloatVector;
+	}
+
+	nodeRenderData(this->rootNode);
 };
