@@ -334,3 +334,62 @@ void Octree::setRenderData() {
 
 	nodeRenderData(this->rootNode);
 };
+
+void Octree::scaling(float w) {
+	
+	this->halfSize *= w;
+
+	if (this->maxDepth > 0) {
+		for (int i = 0; i < 8; i++) {
+			scaling(this->rootNode->childNodes[i], w);
+		}
+	}
+
+	return;
+}
+
+void Octree::scaling(Node* node, float w) {
+
+	std::cout << node->parentNode->nodeDepth << std::endl;
+
+	node->nodeCenter = glm::vec3(
+		((node->nodeCenter.x - this->center.x) * w) + this->center.x,
+		((node->nodeCenter.y - this->center.y) * w) + this->center.y,
+		((node->nodeCenter.z - this->center.z) * w) + this->center.z);
+
+	if (node->nodeDepth < this->maxDepth && node->objectIntersect == 1) {
+		for (int i = 0; i < 8; i++) {
+			scaling(node->childNodes[i], w);
+		}
+	}
+
+	return;
+
+}
+
+float Octree::volume() {
+
+	float sphereVolume = 0;
+
+	for (int i = 0; i < 8; i++) {
+		sphereVolume += volume(this->rootNode->childNodes[i]);
+	}
+
+	return sphereVolume;
+}
+
+float Octree::volume(Node* node) {
+	float nodeVolume = 0;
+
+	if (node->isLeaf and node->objectIntersect == 2) {
+		nodeVolume += (pow((2 * this->halfSize), 3) / pow(8, node->nodeDepth));
+	}
+
+	else if (node->objectIntersect == 1) {
+		for (int i = 0; i < 8; i++) {
+			nodeVolume += volume(node->childNodes[i]);
+		}
+	}
+
+	return nodeVolume;
+}

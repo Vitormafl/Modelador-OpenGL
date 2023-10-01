@@ -18,36 +18,6 @@
 
 #include "../Primitives/Sphere.h"
 
-//GLfloat vertices1[] =
-//{
-//	-0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f,   // Front Lower left corner
-//	 0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f,   // Front Lower right corner
-//	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f,   // Front Upper right corner
-//	-0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f,   // Front Upper left corner
-//	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f,   // Back Lower left corner
-//	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f,   // Back Lower right corner
-//	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,   // Back Upper right corner
-//	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,   // Back Upper left corner
-//};
-//
-//// Indices for vertices order
-//GLuint indices[] =
-//{
-//	0, 1,
-//	1, 2,
-//	2, 3,
-//	3, 0,
-//	0, 4,
-//	1, 5,
-//	2, 6,
-//	3, 7,
-//	4, 5,
-//	5, 6,
-//	6, 7,
-//	7, 4
-//
-//};
-
 int runWireframeVisualization(Sphere sphere)
 {
 	/* GENERATING VERTICES AND INDICES ARRAYS */
@@ -60,17 +30,11 @@ int runWireframeVisualization(Sphere sphere)
 
 	for (int i = 0; i < verticesSize; i++) {
 		vertices[i] = sphere.sphereOctree->octreeData.vertices[i];
-		//std::cout << vertices[i] << std::endl;
 	}
 
 	for (int i = 0; i < indicesSize; i++) {
 		lineIndices[i] = sphere.sphereOctree->octreeData.lineIndices[i];
-		//std::cout << lineIndices[i] << std::endl;
 	}
-
-	//std::cout << sizeof(indices) << std::endl;
-	std::cout << indicesSize << std::endl;
-
 
 	glfwInit();
 
@@ -190,17 +154,11 @@ int runFacesVisualization(Sphere sphere)
 
 	for (int i = 0; i < verticesSize; i++) {
 		vertices[i] = sphere.sphereOctree->octreeData.vertices[i];
-		//std::cout << vertices[i] << std::endl;
 	}
 
 	for (int i = 0; i < indicesSize; i++) {
 		triangleIndices[i] = sphere.sphereOctree->octreeData.triangleIndices[i];
-		//std::cout << lineIndices[i] << std::endl;
 	}
-
-	//std::cout << sizeof(indices) << std::endl;
-	std::cout << indicesSize << std::endl;
-
 
 	glfwInit();
 

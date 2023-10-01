@@ -16,13 +16,6 @@ public:
 
     void setSphereOctree(int maxDepth);
     void paintNodes(Node* node);
-
-    void scaling(float x, float y, float z);
-    float volume();
-
-private:
-    void scaling(Node* node, float x, float y, float z);
-    float volume(Node* node);
 };
 
 #endif

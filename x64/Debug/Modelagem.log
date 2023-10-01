@@ -1,2 +1,3 @@
 ﻿  main.cpp
+C:\Users\vmafl\OneDrive\Área de Trabalho\CG\Modelador-OpenGL\main.cpp(7,38): warning C4305: 'argument': truncation from 'double' to 'float'
   Modelagem.vcxproj -> C:\Users\vmafl\OneDrive\Área de Trabalho\CG\Modelador-OpenGL\x64\Debug\Modelagem.exe

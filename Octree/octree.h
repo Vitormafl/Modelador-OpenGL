@@ -44,6 +44,13 @@ public:
 
 	void nodeRenderData(Node* node);
 	void setRenderData();
+
+	void scaling(float w);
+	float volume();
+
+private:
+	void scaling(Node* node, float w);
+	float volume(Node* node);
 };
 
 #endif 

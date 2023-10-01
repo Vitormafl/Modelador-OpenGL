@@ -99,46 +99,4 @@ void Sphere::paintNodes(Node* node) {
 
 }
 
-void Sphere::scaling(float x, float y, float z) {
 
-    for (int i = 0; i < 8; i++) {
-        scaling(this->sphereOctree->rootNode->childNodes[i], x, y, z);
-    }
-}
-
-void Sphere::scaling(Node* node, float x, float y, float z) {
-    node->nodeCenter = glm::vec3(((node->nodeCenter.x - this->sphereOctree->center.x) * x) + this->sphereOctree->center.x,
-        ((node->nodeCenter.y - this->sphereOctree->center.y) * y) + this->sphereOctree->center.x,
-        ((node->nodeCenter.z - this->sphereOctree->center.z) * z) + this->sphereOctree->center.x);
-
-    for (int i = 0; i < 8; i++) {
-        scaling(node->childNodes[i], x, y, z);
-    }
-}
-
-float Sphere::volume() {
-
-    float sphereVolume = 0;
-
-    for (int i = 0; i < 8; i++) {
-        sphereVolume += volume(this->sphereOctree->rootNode->childNodes[i]);
-    }
-
-    return sphereVolume;
-}
-
-float Sphere::volume(Node* node) {
-    float nodeVolume = 0;
-
-    if (node->isLeaf and node->objectIntersect == 2) {
-        nodeVolume += (pow((2 * this->sphereOctree->halfSize), 3) / pow(8, node->nodeDepth));
-    }
-
-    else if (node->objectIntersect == 1) {
-        for (int i = 0; i < 8; i++) {
-            nodeVolume += volume(node->childNodes[i]);
-        }
-    }
-
-    return nodeVolume;
-}
