@@ -4,13 +4,16 @@
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
 #include<vector>
-
 #include <iostream>
-#include "glm/glm.hpp"
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include <string>
+#include <fstream>
 
-	//Estrutura ded dados do nó
+#include "../Primitives/Cube.h"
+#include "../Primitives/Sphere.h"
+
+using namespace std;
+
+	//Estrutura de dados do nó
 	
 struct Node {
 	int nodeDepth;				//Profundidade do nó na Octree
@@ -35,12 +38,26 @@ public:
 	int maxDepth;				//Profundidade Máxima que um nó da Octree pode atingir
 	Node* rootNode;				//Ponteiro para o Nó raiz da Octree
 	renderData octreeData;      //Dados para a renderização da octree
+	std::string input;
+	int inputIt;
+	Sphere octreeSphere;
+	Cube octreeCube;
 
 	Octree(glm::vec3 rootCenter, float halfSize, int maxDepth);
-	~Octree();
+	Octree(std::string octreeInput);
+	void createNodes(Node* parent);
+	string save();
+
+	//~Octree();
 	void deleteNode(Node* node);
 	void destroy();
 	void addNodes(Node* parent);
+
+	void setCubeOctree(Cube& cube);
+	void paintCubeNodes(Node* node);
+
+	void setSphereOctree(Sphere& sphere);
+	void paintSphereNodes(Node* node);
 
 	void nodeRenderData(Node* node);
 	void setRenderData();
@@ -48,9 +65,12 @@ public:
 	void scaling(float w);
 	float volume();
 
+
 private:
 	void scaling(Node* node, float w);
 	float volume(Node* node);
+
+	string save(Node* node);
 };
 
 #endif 

@@ -14,26 +14,25 @@
 #include"../Objects/EBO.h"
 
 #include "../Testes/octreeConstructor.h"
-#include "../Testes/octreePaintingTest.h"
 
-#include "../Primitives/Sphere.h"
+#include "../Octree/octree.h"
 
-int runWireframeVisualization(Sphere sphere)
+int runWireframeVisualization(Octree octree)
 {
 	/* GENERATING VERTICES AND INDICES ARRAYS */
 
-	int verticesSize = (int)sphere.sphereOctree->octreeData.vertices.size();
-	int indicesSize = (int)sphere.sphereOctree->octreeData.lineIndices.size();
+	int verticesSize = (int)octree.octreeData.vertices.size();
+	int indicesSize = (int)octree.octreeData.lineIndices.size();
 
 	GLfloat* vertices = new GLfloat[verticesSize];
 	GLuint* lineIndices = new GLuint[indicesSize];
 
 	for (int i = 0; i < verticesSize; i++) {
-		vertices[i] = sphere.sphereOctree->octreeData.vertices[i];
+		vertices[i] = octree.octreeData.vertices[i];
 	}
 
 	for (int i = 0; i < indicesSize; i++) {
-		lineIndices[i] = sphere.sphereOctree->octreeData.lineIndices[i];
+		lineIndices[i] = octree.octreeData.lineIndices[i];
 	}
 
 	glfwInit();
@@ -142,22 +141,22 @@ int runWireframeVisualization(Sphere sphere)
 	return 0;
 }
 
-int runFacesVisualization(Sphere sphere)
+int runFacesVisualization(Octree octree)
 {
 	/* GENERATING VERTICES AND INDICES ARRAYS */
 
-	int verticesSize = (int)sphere.sphereOctree->octreeData.vertices.size();
-	int indicesSize = (int)sphere.sphereOctree->octreeData.triangleIndices.size();
+	int verticesSize = (int)octree.octreeData.vertices.size();
+	int indicesSize = (int)octree.octreeData.triangleIndices.size();
 
 	GLfloat* vertices = new GLfloat[verticesSize];
 	GLuint* triangleIndices = new GLuint[indicesSize];
 
 	for (int i = 0; i < verticesSize; i++) {
-		vertices[i] = sphere.sphereOctree->octreeData.vertices[i];
+		vertices[i] = octree.octreeData.vertices[i];
 	}
 
 	for (int i = 0; i < indicesSize; i++) {
-		triangleIndices[i] = sphere.sphereOctree->octreeData.triangleIndices[i];
+		triangleIndices[i] = octree.octreeData.triangleIndices[i];
 	}
 
 	glfwInit();
