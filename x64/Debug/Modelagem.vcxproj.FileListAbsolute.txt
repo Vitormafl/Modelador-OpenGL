@@ -1,2 +1,0 @@
-C:\Users\vmafl\OneDrive\Área de Trabalho\CG\Modelagem\x64\Debug\Modelagem.exe
-C:\Users\vmafl\OneDrive\Área de Trabalho\CG\Modelador-OpenGL\x64\Debug\Modelagem.exe
